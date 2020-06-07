@@ -1,10 +1,22 @@
 {% extends "sales_performance/base.html" %}
 
 {% block content %}
+
     <h1> Sales Performance </h1>
-    {% for post in posts %}
-        <h1>{{ post.title }}</h1>
-        <p>By: {{ post.author }} on {{ post.date_posted }}</p>
-        <p>{{ post.content }}</p>
-    {% endfor %}
+    
+    <div class="row text-center">
+        {% for card in cards %}
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card.title }}</h5>
+                        <p class="card-text">{{ card.content }}</p>
+                        <a href="{{ card.link }}" class="btn btn-primary">{{ card.button }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
 {% endblock content %}
