@@ -17,19 +17,22 @@ cards = [
     }
 ]
 
+
 def home(request):
-    ''' Load the home page of the site '''
+    """ Load the home page of the site """
     context = {
         'cards': cards,
     }
     return render(request, 'sales_performance/home.html', context)
 
+
 def data_management(request):
-    ''' Page provides crud operations for sales data '''
+    """ Page provides crud operations for sales data """
     return render(request, 'sales_performance/data_management.html', {'title': 'Data Management'})
 
+
 def data_visualization(request):
-    ''' Provies visualization options to the user for their sales data '''
+    """ Provies visualization options to the user for their sales data """
 
     results = Sale.objects.all()
     all_users = User.objects.all()
@@ -43,16 +46,17 @@ def data_visualization(request):
     }
     return render(request, 'sales_performance/data_visualization.html', context)
 
-def chart_data(request):
-    ''' text '''
 
+def chart_data(request):
+    """ description """
     all_users = User.objects.all()
 
     labels = [user.username for user in all_users]
 
     return JsonResponse(
-        data = {
-            'labels': labels
+        data={
+            'name': 'Sales',
+            'labels': labels,
+            'sales': [23, 67]
         }
     )
-
