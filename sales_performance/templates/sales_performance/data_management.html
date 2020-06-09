@@ -2,4 +2,19 @@
 
 {% block content %}
     <h1> Data Management </h1>
+    <div>
+        <a href="{% url 'sale-create' %}"><button type="button" class="btn btn-primary"> Insert single sale </button></a>
+    </div>
+
+    <div class="pt-5">
+        {{ order }}
+    </div>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Upload sales data</label>
+        <input type="file" name="file">
+        <p>File must have an extension of .csv</p>
+        <button type="submit">Upload</button>
+    </form>
 {% endblock content %}

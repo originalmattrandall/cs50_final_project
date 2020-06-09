@@ -4,108 +4,117 @@
 {% block content %}
     <h1> Data Visualization </h1>
 
-    <canvas id="bar-graph"></canvas>
+    <select name="charts" onchange="drawChart(this.value)">
+        <option value="">Select a Chart</option>
+        <option value="bar">Bar</option>
+        <option value="polar">Polar</option>
+    </select>
+
+    <canvas id="chart-canvas"></canvas>
 
     <script>
-    $(document).ready(function () {
-        let endpoint = 'sale-api';
+    var chart = null;
 
+    function drawChart(value){
+        // TODO: Clean this up, we are hitting the backend everytime for the same data.
         $.ajax({
             method: 'GET',
-            url: endpoint,
+            url: 'sale-api',
             success: function (data) {
-                drawBarGraph(data, 'bar-graph');
+
+                let config;
+                let ctx = document.getElementById('chart-canvas').getContext('2d');
+
+                switch(value){
+                    case 'bar':
+                        config = getBarChartConfig(data);
+                        break;
+                    case 'polar':
+                        config = getPolarChartConfig(data);
+                        break;
+                }
+
+                if(chart != null){
+                    console.log("destroying chart")
+                    chart.destroy();
+                }
+                chart = new Chart(ctx, config);
             },
             error: function (error_data) {
                 console.log(error_data);
             }
         });
+    };
 
-        function drawBarGraph(data, id) {
-            let labels = data.labels;
-            let chartLabel = data.name;
-            let chartdata = data.sales;
-            let ctx = document.getElementById(id).getContext('2d');
-            let myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: chartLabel,
-                        data: chartdata,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+    function getBarChartConfig(data){
+        return {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: data.name,
+                    data: data.sales,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
                 }
-            });
-        }
-    });
+            }
+        };
+    }
+
+    function getPolarChartConfig(data){
+        return {
+            type: 'polarArea',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: data.name,
+                    data: data.sales,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderwidth: 1
+                }]
+            }
+        };
+    };
     </script>
-
-    {#    <script>#}
-    {#        let ctx = document.getElementById('chart-data');#}
-    {#        let myChart = new Chart(ctx, {#}
-    {#            type: 'bar',#}
-    {#            data: {#}
-    {#                labels: '{{ labels }}',#}
-    {#                datasets: [{#}
-    {#                    label: 'Sales',#}
-    {#                    data: [12, 19],#}
-    {#                    backgroundColor: [#}
-    {#                        'rgba(255, 99, 132, 0.2)',#}
-    {#                        'rgba(54, 162, 235, 0.2)',#}
-    {#                        'rgba(255, 206, 86, 0.2)',#}
-    {#                        'rgba(75, 192, 192, 0.2)',#}
-    {#                        'rgba(153, 102, 255, 0.2)',#}
-    {#                        'rgba(255, 159, 64, 0.2)'#}
-    {#                    ],#}
-    {#                    borderColor: [#}
-    {#                        'rgba(255, 99, 132, 1)',#}
-    {#                        'rgba(54, 162, 235, 1)',#}
-    {#                        'rgba(255, 206, 86, 1)',#}
-    {#                        'rgba(75, 192, 192, 1)',#}
-    {#                        'rgba(153, 102, 255, 1)',#}
-    {#                        'rgba(255, 159, 64, 1)'#}
-    {#                    ],#}
-    {#                    borderWidth: 1#}
-    {#                }]#}
-    {#            },#}
-    {#            options: {#}
-    {#                scales: {#}
-    {#                    yAxes: [{#}
-    {#                        ticks: {#}
-    {#                            beginAtZero: true#}
-    {#                        }#}
-    {#                    }]#}
-    {#                }#}
-    {#            }#}
-    {#        });#}
-    {#    </script>#}
-
 
 {% endblock content %}
 

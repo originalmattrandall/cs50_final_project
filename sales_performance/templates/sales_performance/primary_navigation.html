@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#"> Data Analytics </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
             </li>
@@ -15,5 +15,16 @@
                 <a class="nav-link" href="{% url 'sales-performance-data-visualization' %}">Data Visualization</a>
             </li>
         </ul>
+        <span class="navbar-text">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}"> {{ user.get_username }} </a>
+                <span> | </span>
+                <a href="{% url 'logout' %}"> Logout </a>
+            {% else %}
+                <a href="{% url 'login' %}"> Login </a>
+                <span> | </span>
+                <a href="{% url 'register' %}"> Register </a>
+            {% endif %}
+        </span>
     </div>
 </nav>

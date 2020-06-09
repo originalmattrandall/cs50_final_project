@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'sales_performance.apps.SalesPerformanceConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,3 +123,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# URL related variables
+LOGIN_REDIRECT_URL = 'sales-performance-home'
