@@ -2,15 +2,19 @@
 Small Sales analytics tool. Designed to take sales data and present it in a much more visual way for companies to get and understanding of their data. For the cs50 final project some very basic features will be delivered, it is likely this will be an ongoing project where new features and UI updates will occur.
 
 # Feaures List
-- [x] Bar chart
+- [x] Bar Chart
 - [x] Polar Chart
+- [x] Upload sales data via csv
+- [x] Add single sale from front end
+- [x] New account registration
 - [ ] Sales over time line chart
 - [ ] Forecasting (predicted future data)
 - [ ] Only logged in users able to view data management/visualization
 - [ ] AI to help predict sales data
 - [ ] Custom dashboards with user chosen visualizations
 - [ ] Cutom data filters
-- [ ] Data connectors (sql, postgres, mongo, etc...)
+- [ ] Data connectors (mysql, postgres, mongo, etc...)
+- [ ] Add details to user profile page
 
 # Setup
 1. clone this repository

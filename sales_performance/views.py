@@ -42,7 +42,7 @@ def data_management(request):
 
     context = {
         'title': 'Data Management',
-        'order': 'Order of csv should be ...'
+        'order': 'Order of csv should be title, desc, sale_amount'
     }
 
     if request.method == 'GET':

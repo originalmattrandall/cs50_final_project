@@ -1,18 +1,23 @@
 {% extends "sales_performance/base.html" %}
 
-
 {% block content %}
     <h1> Data Visualization </h1>
 
-    <select name="charts" onchange="drawChart(this.value)">
-        <option value="">Select a Chart</option>
-        <option value="bar">Bar</option>
-        <option value="polar">Polar</option>
-    </select>
+    <div class="column">
+        <div class="row">
+            <select name="charts" onchange="drawChart(this.value)">
+                <option value="">Select a Chart</option>
+                <option value="bar">Bar</option>
+                <option value="polar">Polar</option>
+            </select>
+        </div>
 
-    <canvas id="chart-canvas"></canvas>
-
+        <div class="row">
+            <canvas id="chart-canvas"></canvas>
+        </div>
+    </div>
     <script>
+    // TODO: Move this script stuff out of the template file
     var chart = null;
 
     function drawChart(value){
