@@ -8,7 +8,7 @@ Small Sales analytics tool. Designed to take sales data and present it in a much
 - [ ] Forecasting (predicted future data)
 - [ ] Only logged in users able to view data management/visualization
 - [ ] AI to help predict sales data
-- [ ] Custom dashboards with the data you want
+- [ ] Custom dashboards with user chosen visualizations
 - [ ] Cutom data filters
 - [ ] Data connectors (sql, postgres, mongo, etc...)
 
