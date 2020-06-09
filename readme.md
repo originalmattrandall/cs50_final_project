@@ -21,6 +21,6 @@ example: http://127.0.0.1:8000/
 ```
 
 # Dependencies
-python 3+
-django
-pip install django-crispy-forms
+- python 3+
+- django
+- pip install django-crispy-forms
