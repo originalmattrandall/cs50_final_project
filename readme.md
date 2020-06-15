@@ -9,12 +9,15 @@ Small Sales analytics tool. Designed to take sales data and present it in a much
 - [x] New account registration
 - [ ] Sales over time line chart
 - [ ] Forecasting (predicted future data)
-- [ ] Only logged in users able to view data management/visualization
 - [ ] AI to help predict sales data
 - [ ] Custom dashboards with user chosen visualizations
 - [ ] Cutom data filters
 - [ ] Data connectors (mysql, postgres, mongo, etc...)
-- [ ] Add details to user profile page
+
+# Todo Items
+- Only logged in users able to view data management/visualization
+- Add details to user profile page
+- Create better feedback for file upload
 
 # Setup
 1. clone this repository
