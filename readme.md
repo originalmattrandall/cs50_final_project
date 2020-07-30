@@ -1,4 +1,4 @@
-![example workflow name](https://github.com/actions/hello-world/workflows/Greet%20Everyone/badge.svg)
+![example workflow name](https://github.com/actions/python-package/workflows/Greet%20Everyone/badge.svg)
 # Description
 Small Sales analytics tool. Designed to take sales data and present it in a much more visual way for companies to get an understanding of their data. For the cs50 final project some very basic features will be delivered, it is likely this will be an ongoing project where new features and UI updates will occur as I have spare time to add more.
 
